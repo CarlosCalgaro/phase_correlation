@@ -15,3 +15,18 @@ def plot_images(images = [], titles = []):
     if titles[i]:
       axes[i].set_title(titles[i])
   plt.show()
+
+def plot_images_spectrum(images = [], titles = []):
+  image_size = len(images)
+  title_size = len(titles)
+  if image_size != title_size:
+    raise ValueError("Images and titles must have the same size")
+  fig, axes = plt.subplots(1, image_size, figsize=(10, 5))
+
+  for i in range(image_size):
+    image = axes[i].imshow(images[i], cmap='gray')
+    axes[i].axis('off')
+    if titles[i]:
+      axes[i].set_title(titles[i])
+    plt.colorbar(image, ax=axes[i], orientation='vertical', label='Magnitude Scale')
+  plt.show()
